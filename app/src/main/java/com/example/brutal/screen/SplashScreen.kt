@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.brutal.R
-import com.example.brutal.ui.theme.BrutalTheme
+import com.example.brutal.core.presentation.theme.BrutalTheme
 
 @Composable
 fun SplashScreen(modifier: Modifier = Modifier) {

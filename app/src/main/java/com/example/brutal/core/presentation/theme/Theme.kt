@@ -1,4 +1,4 @@
-package com.example.brutal.ui.theme
+package com.example.brutal.core.presentation.theme
 
 import android.app.Activity
 import android.os.Build
