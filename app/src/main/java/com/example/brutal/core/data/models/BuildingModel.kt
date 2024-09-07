@@ -3,23 +3,55 @@ package com.example.brutal.core.data.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-
-@Entity("brutal")
+import java.sql.Types.INTEGER
+@Entity(tableName = "brutal")
 data class BuildingModel(
-    @PrimaryKey val id: String,
-    val name: String,
-    val architect: String,
-    @ColumnInfo(name = "construction_date") val constructionDate: String,
-    val city: String,
-    val country: String,
-    val description: String,
-    @ColumnInfo(name = "description_source") val descriptionSource: String,
-    @ColumnInfo(name = "maps_coordinates") val mapsCoordinates: String,
-    @ColumnInfo(name = "maps_link") val mapsLink: String,
-    val tags: String,
-    val status: String,
-    @ColumnInfo(name = "photo_link") val photoLink: String,
-    @ColumnInfo(name = "photo_source") val photoSource: String,
-    val links: String,
-    @ColumnInfo(name = "is_favorite") val isFavorite: Boolean
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "id")
+    val id: Int?,
+
+    @ColumnInfo(name = "name")
+    val name: String?,
+
+    @ColumnInfo(name = "architect")
+    val architect: String?,
+
+    @ColumnInfo(name = "construction_date")
+    val constructionDate: String?,
+
+    @ColumnInfo(name = "city")
+    val city: String?,
+
+    @ColumnInfo(name = "country")
+    val country: String?,
+
+    @ColumnInfo(name = "description")
+    val description: String?,
+
+    @ColumnInfo(name = "description_source")
+    val descriptionSource: String?,
+
+    @ColumnInfo(name = "maps_coordinates")
+    val mapsCoordinates: String?,
+
+    @ColumnInfo(name = "maps_link")
+    val mapsLink: String?,
+
+    @ColumnInfo(name = "tags")
+    val tags: String?,
+
+    @ColumnInfo(name = "status")
+    val status: String?,
+
+    @ColumnInfo(name = "photo_link")
+    val photoLink: String?,
+
+    @ColumnInfo(name = "photo_source")
+    val photoSource: String?,
+
+    @ColumnInfo(name = "links")
+    val links: String?,
+
+    @ColumnInfo(name = "is_favorite")
+    val isFavorite: Int?
 )

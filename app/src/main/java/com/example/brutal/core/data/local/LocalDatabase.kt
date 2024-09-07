@@ -4,11 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.RoomDatabase.Builder
 import com.example.brutal.core.data.local.dao.BuildingDao
 import com.example.brutal.core.data.models.BuildingModel
+import com.example.brutal.core.data.models.TestModel
 
-@Database(entities = [BuildingModel::class], version = 1)
+@Database(entities = [BuildingModel::class], version = 1, exportSchema = false)
 abstract class LocalDatabase : RoomDatabase() {
 
     abstract fun buildingDao(): BuildingDao

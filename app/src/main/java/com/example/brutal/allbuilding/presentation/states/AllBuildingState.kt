@@ -1,8 +1,8 @@
 package com.example.brutal.allbuilding.presentation.states
 
-import com.example.brutal.core.data.models.BuildingModel
 
 data class AllBuildingState(
-    val buildings: List<BuildingModel> = emptyList(),
-    val isLoading: Boolean = false
+    val buildings: List<String> = emptyList(),
+    val isLoading: Boolean = false,
+    val errorMessage: String? = null
 )

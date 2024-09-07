@@ -3,6 +3,7 @@ package com.example.brutal.core.data.local.dao
 import androidx.room.Dao
 import androidx.room.Query
 import com.example.brutal.core.data.models.BuildingModel
+import com.example.brutal.core.data.models.TestModel
 
 @Dao
 interface BuildingDao {

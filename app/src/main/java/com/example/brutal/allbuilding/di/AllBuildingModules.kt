@@ -5,6 +5,7 @@ import com.example.brutal.allbuilding.data.AllBuildingRepositoryImpl
 import com.example.brutal.allbuilding.domain.usecases.GetBuildingsUseCase
 import com.example.brutal.allbuilding.presentation.AllBuildingViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
@@ -13,5 +14,5 @@ val allBuildingModules = module {
     factory {
         GetBuildingsUseCase(get())
     }
-    viewModel { AllBuildingViewModel(get()) }
+    viewModel { AllBuildingViewModel(get(), get(named("io"))) }
 }
