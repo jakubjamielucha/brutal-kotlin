@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.brutal"
+    namespace = "com.jakub.brutal"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.brutal"
+        applicationId = "com.jakub.brutal"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -60,6 +60,7 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.koin.annotation)
+    implementation(libs.androidx.compose.font)
     ksp(libs.koin.annotation.compiler)
 
     implementation(libs.androidx.ui.graphics)
