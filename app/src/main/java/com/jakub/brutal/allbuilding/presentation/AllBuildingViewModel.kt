@@ -1,37 +1,43 @@
 package com.jakub.brutal.allbuilding.presentation
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jakub.brutal.allbuilding.domain.usecases.GetBuildingsUseCase
-import com.jakub.brutal.allbuilding.presentation.states.AllBuildingState
+import com.jakub.brutal.allbuilding.presentation.states.AllBuildingUiEvent
+import com.jakub.brutal.allbuilding.presentation.states.AllBuildingUiState
+import com.jakub.brutal.core.presentation.BaseViewModel
+import com.jakub.brutal.core.presentation.utils.safeLaunch
 import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.koin.android.annotation.KoinViewModel
 
+@KoinViewModel
 class AllBuildingViewModel(
     private val useCase: GetBuildingsUseCase,
-    private val dispatcher: CoroutineDispatcher
-) : ViewModel() {
+) : BaseViewModel<AllBuildingUiState, AllBuildingUiEvent>(AllBuildingUiState()) {
 
-    private val _uiState = MutableStateFlow(AllBuildingState())
-    val uiState get() = _uiState.asStateFlow()
+    override fun onUiStateSubscribed() {
+        super.onUiStateSubscribed()
+        onEvent(AllBuildingUiEvent.LoadBuildings)
+    }
 
-    fun getAllBuilding() {
+    override fun onEventSideEffect(event: AllBuildingUiEvent) {
+        when (event) {
+            AllBuildingUiEvent.LoadBuildings -> getAllBuilding()
+        }
+    }
+
+    private fun getAllBuilding() {
         _uiState.update { it.copy(isLoading = true) }
-        viewModelScope.launch(dispatcher) {
-            useCase.runCatching {
-                invoke()
-            }.onSuccess { buildings ->
-                _uiState.update { it.copy(isLoading = false, buildings = buildings) }
-            }.onFailure { exception ->
-                if (exception is CancellationException) throw exception
-                Log.e("getAllBuilding", "error: $exception", )
+        viewModelScope.safeLaunch(
+            context = ioDispatcher,
+            onError = { exception ->
                 _uiState.update { it.copy(isLoading = false, errorMessage = exception.message) }
             }
+        ) {
+            val buildings = useCase.invoke()
+            _uiState.update { it.copy(isLoading = false, buildings = buildings) }
         }
     }
 }
