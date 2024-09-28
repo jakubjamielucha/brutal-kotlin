@@ -22,9 +22,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jakub.brutal.core.presentation.components.BrutalHeader
 import com.jakub.brutal.core.presentation.theme.rememberDefaultFont
+import com.jakub.brutal.mainmenu.presentation.model.MainMenuEvent
 
 @Composable
-fun MainMenuScreen(modifier: Modifier = Modifier) {
+fun MainMenuScreen(
+    menuList: List<String>,
+    modifier: Modifier = Modifier,
+    onEvent: (MainMenuEvent) -> Unit = {}
+) {
     val default = rememberDefaultFont()
     val menuStyle = remember {
         TextStyle(
@@ -44,7 +49,9 @@ fun MainMenuScreen(modifier: Modifier = Modifier) {
     ) {
         BrutalHeader(boxSize = 250, textSize = 32, modifier = Modifier.padding(vertical = 32.dp))
         menuList.forEach {
-            TextButton({}, modifier = Modifier.height((configuration.screenHeightDp / 6).dp)) {
+            TextButton({
+                onEvent(MainMenuEvent.NavigateToAllBuildings)
+            }, modifier = Modifier.height((configuration.screenHeightDp / 6).dp)) {
                 Text(
                     text = it,
                     style = menuStyle
@@ -54,17 +61,9 @@ fun MainMenuScreen(modifier: Modifier = Modifier) {
     }
 }
 
-val menuList = listOf(
-    "All buildings.",
-    "Maps.",
-    "Favorites.",
-    "Shops.",
-    "Contact.",
-)
-
 @Composable
 @Preview(showBackground = true)
 @PreviewScreenSizes
 private fun MainMenuScreenPreview() {
-    MainMenuScreen()
+    MainMenuScreen(emptyList())
 }

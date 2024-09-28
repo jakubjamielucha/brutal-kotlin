@@ -59,8 +59,10 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
-    implementation(libs.koin.annotation)
     implementation(libs.androidx.compose.font)
+    implementation(libs.coil)
+
+    implementation(libs.koin.annotation)
     ksp(libs.koin.annotation.compiler)
 
     implementation(libs.androidx.ui.graphics)

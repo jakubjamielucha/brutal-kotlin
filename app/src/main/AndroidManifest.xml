@@ -14,9 +14,8 @@
         android:theme="@style/Theme.Brutal"
         tools:targetApi="31" >
         <activity
-            android:name=".allbuilding.presentation.AllBuildingActivity"
+            android:name=".mainmenu.presentation.MainMenuActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.Brutal" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".allbuilding.presentation.AllBuildingActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Brutal"/>
     </application>
 
 </manifest>
