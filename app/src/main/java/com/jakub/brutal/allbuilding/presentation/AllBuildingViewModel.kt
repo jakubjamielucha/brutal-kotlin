@@ -25,6 +25,7 @@ class AllBuildingViewModel(
     override fun onEventSideEffect(event: AllBuildingUiEvent) {
         when (event) {
             AllBuildingUiEvent.LoadBuildings -> getAllBuilding()
+            else -> Unit
         }
     }
 
